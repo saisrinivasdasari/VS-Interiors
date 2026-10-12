@@ -960,25 +960,37 @@ right: -17px;
 overflow-y: scroll;
 }
 #btn-close{
-top: 50px;
-right: 50px;
+top: 25px;
+right: 25px;
 position: absolute;
-z-index: 1001;
-width: 26px;
-height: 26px;
+z-index: 1005;
+width: 32px;
+height: 32px;
 cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 50%;
+transition: background 0.3s ease;
+}
+#btn-close:hover {
+background: rgba(255, 255, 255, 0.25);
 }
 #btn-close span{
 content: '';
 display: block;
 position: absolute;
 top: 50%;
-width: 100%;
+left: 20%;
+width: 60%;
 height: 2px;
-background: #000000;
+background: #ffffff;
 transform: rotate(45deg);
+margin-top: -1px;
 }
-#extra-wrap.dark #btn-close span{
+#extra-wrap.dark #btn-close span,
+#extra-wrap #btn-close span{
 background:#ffffff;
 }
 #btn-close span:nth-child(2){
@@ -10596,6 +10608,22 @@ width: auto;
   margin-bottom: 12px;
 }
 
+#extra-content {
+  padding: 40px 30px !important;
+}
+
+#extra-content .footer-logo-wrap {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  max-width: calc(100% - 60px);
+}
+
+#extra-content .footer-logo-wrap img {
+  max-width: 170px;
+  height: auto;
+  display: block;
+}
+
 /* Floating Action Buttons: Call (Left) & WhatsApp (Right) */
 .float-btn {
   position: fixed;
@@ -10749,5 +10777,100 @@ width: auto;
   #back-to-top.show {
     bottom: 76px !important;
     right: 22px !important;
+  }
+}
+
+/* Premium Footer 'Get in Touch' Styling */
+.footer-touch-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.footer-touch-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+
+.footer-touch-header h2 {
+  font-size: 34px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.5px;
+  margin-bottom: 0 !important;
+}
+
+.footer-touch-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.footer-touch-item:last-child {
+  margin-bottom: 0;
+}
+
+.footer-touch-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.footer-touch-item:hover .footer-touch-icon {
+  background: #8B6543;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.footer-touch-content .label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.footer-touch-content .value {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0;
+  text-transform: none;
+}
+
+.footer-touch-content a.value {
+  color: #ffffff;
+  transition: color 0.25s ease;
+  display: inline-block;
+}
+
+.footer-touch-content a.value:hover {
+  color: #d4af37;
+}
+
+@media (max-width: 767px) {
+  .footer-touch-box {
+    padding: 20px;
+  }
+  .footer-touch-header h2 {
+    font-size: 26px !important;
+  }
+  .footer-touch-content .value {
+    font-size: 15px;
   }
 }

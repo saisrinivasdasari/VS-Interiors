@@ -39,29 +39,34 @@ $(document).ready(function() {
         if (!error) {
             $('#send_message').attr({
                 'disabled': true,
-                'value': 'Sending...'
+                'value': 'Redirecting to WhatsApp...'
             });
 
-            $.post("contact.php", $("#contact_form").serialize(), function(result) {
-                if (result.trim() === 'sent') {
-                    // Success message
-                    $('#contact_form').fadeOut(400, function() {
-                        $('<div id="success_message" class="alert alert-success mt-3">Your message has been sent successfully!</div>')
-                            .hide()
-                            .appendTo($(this).parent())
-                            .fadeIn(500);
-                    });
-                } else {
-                    // Failure message
-                    if (!$('#mail_fail').length) {
-                        $('<div id="mail_fail" class="alert alert-danger mt-3">Message failed to send. Please try again.</div>')
-                            .hide()
-                            .appendTo($('#contact_form').parent())
-                            .fadeIn(500);
-                    }
-                    $('#send_message').removeAttr('disabled').attr('value', 'Send Message');
-                }
+            // Format message for WhatsApp
+            var waText = "Hello VS Interiors, I would like to inquire about interior design services.\n\n" +
+                         "👤 *Name:* " + name + "\n" +
+                         "📧 *Email:* " + email + "\n" +
+                         "📞 *Phone:* " + phone + "\n" +
+                         "💬 *Message:* " + message;
+
+            var waUrl = "https://wa.me/919063429993?text=" + encodeURIComponent(waText);
+
+            // Open WhatsApp in new tab/window
+            window.open(waUrl, '_blank');
+
+            // Show nice success confirmation
+            $('#contact_form').fadeOut(400, function() {
+                $('<div id="success_message" class="alert alert-success mt-3 text-center p-4" style="background: rgba(37, 211, 102, 0.1); border: 1px solid #25D366; border-radius: 8px; color: #111;">' +
+                  '<i class="fa-brands fa-whatsapp mb-2" style="font-size: 2.2rem; color: #25D366; display: block;"></i>' +
+                  '<h5 style="color: #111; font-weight: 600;">Opening WhatsApp...</h5>' +
+                  '<p class="mb-2" style="font-size: 0.95rem; color: #555;">Your inquiry details have been transferred to WhatsApp. If the chat didn\'t open automatically, click below:</p>' +
+                  '<a href="' + waUrl + '" target="_blank" class="btn btn-sm btn-success mt-2" style="background:#25D366; border-color:#25D366; font-weight:600; padding: 8px 20px; border-radius: 20px;"><i class="fa-brands fa-whatsapp me-2"></i>Open Chat Directly</a>' +
+                  '</div>')
+                    .hide()
+                    .appendTo($(this).parent())
+                    .fadeIn(500);
             });
         }
     });
 });
+
