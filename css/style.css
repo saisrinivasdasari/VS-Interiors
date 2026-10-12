@@ -10595,3 +10595,127 @@ width: auto;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   margin-bottom: 12px;
 }
+
+/* Floating Action Buttons (WhatsApp & Call) */
+.floating-actions {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+.float-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+
+.float-btn i {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.float-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+.float-call {
+  background: linear-gradient(135deg, #8B6543 0%, #5a3e26 100%);
+}
+
+.float-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  color: #ffffff !important;
+}
+
+.float-whatsapp:hover {
+  background: linear-gradient(135deg, #2fe06f 0%, #159c8d 100%);
+}
+
+.float-call:hover {
+  background: linear-gradient(135deg, #a4764e 0%, #6d4b2e 100%);
+}
+
+/* Tooltip label on hover */
+.float-btn .float-tooltip {
+  position: absolute;
+  left: 68px;
+  background: rgba(20, 20, 20, 0.92);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.float-btn:hover .float-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Pulse animation for WhatsApp */
+.float-whatsapp::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.5);
+  z-index: -1;
+  animation: floatPulse 2.4s infinite;
+}
+
+@keyframes floatPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .floating-actions {
+    left: 18px;
+    bottom: 18px;
+    gap: 12px;
+  }
+  .float-btn {
+    width: 48px;
+    height: 48px;
+  }
+  .float-btn i {
+    font-size: 22px;
+  }
+  .float-btn .float-tooltip {
+    display: none;
+  }
+}
